@@ -29,6 +29,8 @@ const overlay = document.getElementById("overlay");
 const startButton = document.getElementById("startButton");
 const scoreDisplay = document.getElementById("score");
 const overlayMessage = document.getElementById("overlayMessage");
+const loadingOverlay = document.getElementById("loadingOverlay");
+const loadingStatus = document.getElementById("loadingStatus");
 
 // Initialize balls
 function initBalls() {
@@ -234,13 +236,24 @@ async function startGame() {
 
   // Initialize hand tracking if not already done
   if (!window.handTrackingInitialized) {
+    // Show loading overlay
+    loadingOverlay.classList.remove("hidden");
+    loadingStatus.textContent = "Requesting camera access...";
+
     const webcam = document.getElementById("webcam");
+
+    // Update loading status
+    loadingStatus.textContent = "Loading MediaPipe Hands model...";
+
     const success = await window.handTracking.setupHandTracking(
       webcam,
       (hands) => {
         gameState.hands = hands;
       },
     );
+
+    // Hide loading overlay
+    loadingOverlay.classList.add("hidden");
 
     if (!success) {
       endGame();
@@ -284,6 +297,24 @@ function endGame() {
 
 // Event listeners
 startButton.addEventListener("click", startGame);
+
+// Check if TensorFlow.js is loaded
+function checkTensorFlowLoaded() {
+  if (typeof tf !== "undefined" && typeof handPoseDetection !== "undefined") {
+    // TensorFlow.js and dependencies loaded
+    loadingOverlay.classList.add("hidden");
+  } else {
+    // Check again after a short delay
+    setTimeout(checkTensorFlowLoaded, 100);
+  }
+}
+
+// Start checking once DOM is loaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", checkTensorFlowLoaded);
+} else {
+  checkTensorFlowLoaded();
+}
 
 // Initial render
 render();

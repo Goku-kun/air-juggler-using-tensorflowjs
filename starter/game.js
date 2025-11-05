@@ -29,6 +29,8 @@ const overlay = document.getElementById("overlay");
 const startButton = document.getElementById("startButton");
 const scoreDisplay = document.getElementById("score");
 const overlayMessage = document.getElementById("overlayMessage");
+const loadingOverlay = document.getElementById("loadingOverlay");
+const loadingStatus = document.getElementById("loadingStatus");
 
 // Initialize balls
 function initBalls() {
@@ -236,10 +238,17 @@ async function startGame() {
 
   // TODO: Step 10 - Initialize hand tracking
   // Check if hand tracking is already initialized
-  // If not, call setupHandTracking with webcam element and callback
-  // The callback should update gameState.hands with detected positions
-  // Start detection if successful
-  // Hide overlay and start game loop
+  // If not:
+  //   - Show loading overlay: loadingOverlay.classList.remove("hidden")
+  //   - Update status: loadingStatus.textContent = "Requesting camera access..."
+  //   - Get webcam element
+  //   - Update status: loadingStatus.textContent = "Loading MediaPipe Hands model..."
+  //   - Call setupHandTracking with webcam element and callback
+  //   - The callback should update gameState.hands with detected positions
+  //   - Hide loading overlay: loadingOverlay.classList.add("hidden")
+  //   - If unsuccessful, show error and return
+  //   - Start detection if successful
+  //   - Mark as initialized: window.handTrackingInitialized = true
 
   overlay.classList.add("hidden");
   gameLoop();
@@ -273,6 +282,13 @@ function endGame() {
 
 // Event listeners
 startButton.addEventListener("click", startGame);
+
+// TODO: Step 11 - Hide loading overlay when TensorFlow.js loads
+// Create a function checkTensorFlowLoaded() that:
+//   - Checks if tf and handPoseDetection are defined
+//   - If yes, hide the loading overlay
+//   - If no, check again after 100ms using setTimeout
+// Call this function when DOM is loaded
 
 // Initial render
 render();

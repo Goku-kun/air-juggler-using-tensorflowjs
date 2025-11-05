@@ -38,6 +38,15 @@
       </div>
     </div>
 
+    <!-- Loading overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+      <div class="loading-content">
+        <div class="loader"></div>
+        <h2>Loading TensorFlow.js</h2>
+        <p id="loadingStatus">Initializing models...</p>
+      </div>
+    </div>
+
     <!-- Load TensorFlow.js and MediaPipe Hands -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
