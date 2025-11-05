@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Air Juggler using TensorFlow.js - Gesture-Controlled Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Air Juggler</h1>
+      <p class="instructions">
+        Move your hands in front of the camera to keep the ball in the air!
+      </p>
+
+      <div class="canvas-wrapper">
+        <!-- Hidden video element for webcam -->
+        <video id="webcam" autoplay playsinline></video>
+
+        <!-- Game canvas -->
+        <canvas id="gameCanvas" width="640" height="480"></canvas>
+
+        <!-- Game state overlay -->
+        <div id="overlay" class="overlay">
+          <h2 id="overlayMessage">Ready to Play?</h2>
+          <button id="startButton">Start Game</button>
+        </div>
+      </div>
+
+      <!-- Score display -->
+      <div id="scoreDisplay">
+        <p>Time: <span id="score">0</span>s</p>
+      </div>
+    </div>
+
+    <!-- TODO: Load TensorFlow.js and MediaPipe Hands libraries here -->
+    <!-- Step 1: Add script tags for:
+         - @tensorflow/tfjs
+         - @mediapipe/hands
+         - @tensorflow-models/hand-pose-detection
+    -->
+
+    <!-- Load game modules -->
+    <script src="handTracking.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
