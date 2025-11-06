@@ -117,12 +117,7 @@ function updateScore() {
 
 // Render everything
 function render() {
-  // TODO: Step 9 - Draw video feed directly onto canvas
-  // Get the webcam element
-  // Check if video is ready (readyState === HAVE_ENOUGH_DATA)
-  // Use ctx.save(), ctx.scale(-1, 1), ctx.drawImage(), ctx.restore()
-  // Add semi-transparent overlay for visibility
-
+  // Draw video feed directly onto canvas (provided)
   const webcam = document.getElementById("webcam");
   if (webcam && webcam.readyState === webcam.HAVE_ENOUGH_DATA) {
     ctx.save();
@@ -236,19 +231,8 @@ async function startGame() {
 
   initBalls();
 
-  // TODO: Step 10 - Initialize hand tracking
-  // Check if hand tracking is already initialized
-  // If not:
-  //   - Show loading overlay: loadingOverlay.classList.remove("hidden")
-  //   - Update status: loadingStatus.textContent = "Requesting camera access..."
-  //   - Get webcam element
-  //   - Update status: loadingStatus.textContent = "Loading MediaPipe Hands model..."
-  //   - Call setupHandTracking with webcam element and callback
-  //   - The callback should update gameState.hands with detected positions
-  //   - Hide loading overlay: loadingOverlay.classList.add("hidden")
-  //   - If unsuccessful, show error and return
-  //   - Start detection if successful
-  //   - Mark as initialized: window.handTrackingInitialized = true
+  // TODO: Step 7 - Integrate Hand Tracking with Game
+  // Initialize hand tracking if not already done:
 
   overlay.classList.add("hidden");
   gameLoop();
@@ -283,12 +267,11 @@ function endGame() {
 // Event listeners
 startButton.addEventListener("click", startGame);
 
-// TODO: Step 11 - Hide loading overlay when TensorFlow.js loads
-// Create a function checkTensorFlowLoaded() that:
-//   - Checks if tf and handPoseDetection are defined
-//   - If yes, hide the loading overlay
-//   - If no, check again after 100ms using setTimeout
-// Call this function when DOM is loaded
+// TODO: Step 2 - Implement Loading Progress Indicator
+// Create a function checkTensorFlowLoaded():
+
+// Start checking once DOM is loaded:
+
 
 // Initial render
 render();

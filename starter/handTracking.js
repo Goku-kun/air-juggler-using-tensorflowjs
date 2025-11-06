@@ -14,23 +14,15 @@ async function setupHandTracking(videoElement, callback) {
   detectionCallback = callback;
 
   try {
-    // TODO: Step 2 - Request webcam access using getUserMedia
-    // Use navigator.mediaDevices.getUserMedia() with video constraints
-    // Set video resolution to 640x480
+    // TODO: Step 3 - Request Webcam Access
+    // Request webcam access using getUserMedia:
 
-    // TODO: Step 3 - Connect the stream to the video element
-    // Set video.srcObject to the stream
-    // Wait for video to start playing
+    // Connect the stream to the video element:
 
-    // TODO: Step 4 - Load MediaPipe Hands model
-    // Create model configuration with:
-    // - runtime: 'mediapipe'
-    // - solutionPath: CDN URL
-    // - maxHands: 2
-    // - modelType: 'full'
+    // TODO: Step 4 - Load MediaPipe Hands Model
+    // Configure and load the model:
 
-    // TODO: Step 5 - Create the detector
-    // Use window.handPoseDetection.createDetector()
+    // Create the detector:
 
     console.log("Hand tracking initialized successfully");
     return true;
@@ -70,15 +62,14 @@ async function detectHands() {
   if (!isDetecting) return;
 
   try {
-    // TODO: Step 6 - Run hand detection on current video frame
-    // Use detector.estimateHands(video)
-    // TODO: Step 7 - Transform hand landmarks to canvas coordinates
-    // For each detected hand:
-    // - Get the palm base keypoints (first 5 landmarks)
-    // - Calculate average X and Y position
-    // - Mirror the X coordinate (640 - x)
-    // - Return array of {x, y} positions
-    // TODO: Step 8 - Call the callback with hand positions
+    // TODO: Step 5 - Detect Hands in Real-Time
+    // Run hand detection on current video frame:
+
+    // TODO: Step 6 - Transform Hand Landmarks to Coordinates
+    // Transform hand landmarks to canvas coordinates:
+
+    // Call callback with hand positions:
+
   } catch (error) {
     console.error("Error detecting hands:", error);
   }
