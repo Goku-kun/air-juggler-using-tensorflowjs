@@ -79,7 +79,7 @@ async function detectHands() {
     // Transform hand landmarks to canvas coordinates
     const handPositions = hands.map((hand) => {
       // Get palm center (keypoint 0 is wrist, we'll use average of palm base points)
-      const palmBase = hand.keypoints.slice(0, 5); // Wrist and palm base
+      const palmBase = [0, 5, 9, 13, 17].map((i) => hand.keypoints[i]); // Wrist and base of index, middle, ring and pinky fingers
       const avgX =
         palmBase.reduce((sum, kp) => sum + kp.x, 0) / palmBase.length;
       const avgY =
